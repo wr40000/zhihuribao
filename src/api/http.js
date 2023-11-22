@@ -4,6 +4,42 @@ import { Toast } from 'antd-mobile';
 
 /* 核心方法 */
 const http = function http(config) {
+  // #region
+  // 这是一个 JavaScript 函数，看起来是一个用于发送 HTTP 请求的封装函数。
+  // 以下是该函数的详细分析：
+  // 参数和默认配置：
+
+  // 函数接受一个参数 config，用于配置 HTTP 请求的各种参数。
+  // 利用 Object.assign 设置了默认的配置，包括 url、method、credentials、
+  // headers、body、params、responseType、signal 等。
+  // 对一些参数进行了简单的验证和初始化。
+  // URL 参数拼接：
+
+  // 如果存在 params 参数，将其转换为 URL 查询字符串，并附加到 url 上。
+  // 请求体处理：
+
+  // 如果 body 是一个普通对象，将其转换为 URL 编码的字符串，并设置请求头的
+  // Content-Type 为 application/x-www-form-urlencoded。
+  // Token 处理：
+
+  // 从本地存储中获取名为 'tk' 的 token。
+  // 如果存在 token，并且请求的 URL 符合一定条件（在 safeList 中定义的一些路径），
+  // 则在请求头中添加 'authorization' 字段。
+  // 发送请求：
+
+  // 将请求方法转换为大写。
+  // 构建最终的 config 对象，包括 method、credentials、headers、cache、signal 等。
+  // 如果是 POST、PUT、PATCH 请求且存在请求体，则将请求体添加到 config.body。
+  // 使用 fetch 函数发起 HTTP 请求。
+  // 处理响应：
+
+  // 在响应到达后，首先检查响应的状态码。如果是 2xx 或者 3xx，则根据 responseType 处理响应体。
+  // 如果状态码不在 2xx 或者 3xx 范围内，使用 Promise.reject 返回一个包含错误信息的对象。
+  // 错误处理：
+
+  // 在请求过程中发生错误时（如网络错误），捕获错误并通过 Toast.show 方法显示一条包含错误信息的提示，
+  // 并使用 Promise.reject 返回错误。
+  // #endregion
   // initial config & validate
   if (!_.isPlainObject(config)) config = {};
   config = Object.assign({

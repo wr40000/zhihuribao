@@ -1,0 +1,1 @@
+export const IMGADRESS = 'http://139.159.253.241/images/%E5%A3%81%E7%BA%B8/%E8%90%A7%E5%AE%B9%E9%B1%BC&%E6%B2%88%E5%B9%BC%E6%A5%9A/IMG_026.jpg'

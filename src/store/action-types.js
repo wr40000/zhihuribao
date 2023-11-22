@@ -1,0 +1,1 @@
+export const TERRARIA_INFO = 'TERRARIA_INFO';
