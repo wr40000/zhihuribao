@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkzhihuribao=self.webpackChunkzhihuribao||[]).push([[810],{2810:(i,e,u)=>{u.r(e),u.d(e,{default:()=>h});u(2791);var a=u(184);function h(){return(0,a.jsx)("div",{className:"login-box",children:"Login"})}}}]);
+//# sourceMappingURL=810.0720e03a.chunk.js.map

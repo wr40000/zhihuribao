@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkzhihuribao=self.webpackChunkzhihuribao||[]).push([[574],{2574:(e,r,s)=>{s.r(r),s.d(r,{default:()=>a});s(2791);var u=s(184);function a(){return(0,u.jsx)("div",{className:"store-box",children:"Store"})}}}]);
+//# sourceMappingURL=574.cbf40726.chunk.js.map
