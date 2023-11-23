@@ -1,5 +1,6 @@
 import React from "react";
 import { Skeleton } from "antd-mobile";
+import './index.less'
 
 export default function SkeletonAgian() {
   return (
