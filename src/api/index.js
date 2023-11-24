@@ -36,13 +36,17 @@ const queryNewsInfo = (id) =>
   });
 
 // 获取新闻点赞信息
-const queryStoryExtra = (id) => {
-  return http.get("/api/story_extra", {
+// const queryStoryExtra = (id) => {return http.get("/api/story_extra", {params: {id,},});};
+const queryStoryExtra = (id) =>
+  axios({
+    method: "get",
+    url: "http://139.159.253.241:7100/story_extra",
     params: {
       id,
     },
+  }).then(function (response) {
+    return response;
   });
-};
 
 const api = {
   queryNewsLatest,
