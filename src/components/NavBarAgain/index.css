@@ -1,0 +1,10 @@
+.navbar-again-box {
+  padding: 0 20px;
+  height: 80px;
+}
+.navbar-again-box .adm-nav-bar-title {
+  font-size: 32px;
+}
+.navbar-again-box .adm-nav-bar-back-arrow {
+  font-size: 36px;
+}
