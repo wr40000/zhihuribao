@@ -48,11 +48,48 @@ const queryStoryExtra = (id) =>
     return response;
   });
 
+// 发送验证码
+// const sendPhoneCode = (phone) =>
+//   axios.post("http://139.159.253.241:7100/phone_code",{phone}).then((data) => {
+//     return data.data;
+//   });
+const sendPhoneCode = (phone) =>
+  axios({
+    method: "post",
+    url: "http://139.159.253.241:7100/phone_code",
+    data: {
+      phone,
+    },
+  }).then((data) => {
+    return data.data;
+  });
+
+// 登录 / 注册
+const login = (phone, code) =>
+  axios({
+    method: "post",
+    url: "http://139.159.253.241:7100/login",
+    data: {
+      phone,
+      code,
+    },
+  }).then((data) => {
+    return data.data;
+  });
+
+// 获取登陆者的信息
+const queryUserTnfo = () => {
+  axios.get("http://139.159.253.241:7100/user_info").then((data) => data.data);
+};
+
 const api = {
   queryNewsLatest,
   queryNewsBefore,
   queryNewsInfo,
   queryStoryExtra,
+  sendPhoneCode,
+  login,
+  queryUserTnfo,
 };
 
 export default api;
