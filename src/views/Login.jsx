@@ -37,10 +37,11 @@ function Login(props) {
   // 提交表单
   const submit = async () => {
     try {
-      await formIns.validateFields(["phone"]);
+      await formIns.validateFields();
       let { phone, code } = formIns.getFieldValue();
-      let data = await api.login(phone, code);
-      let { code: codeHttp, token } = data;
+      // let data = await api.login(phone, code);
+      // let { code: codeHttp, token } = data;
+      let { code: codeHttp, token } = await api.login(phone, code);
       if (+codeHttp !== 0) {
         Toast.show({
           icon: "fail",
@@ -51,12 +52,14 @@ function Login(props) {
       }
       // 登录成功 存储token, 登陆者信息到redux，提示，跳转
       _.storage.set("tk", token);
-      await queryUserInfoAsync() // 派发任务，同步redux中的状态信息
+      await queryUserInfoAsync(); // 派发任务，同步redux中的状态信息
       Toast.show({
-        icon: 'success',
-        content: "登陆成功"
-      })
+        icon: "success",
+        content: "登陆成功",
+      });
       navigate(-1);
+      let to = usp.get("to");
+      to ? navigate(to, { replace: true }) : navigate(-1);
     } catch (_) {}
   };
   // 发送验证码 校验
@@ -84,21 +87,35 @@ function Login(props) {
   const send = async () => {
     let phone = formIns.getFieldValue("phone");
     try {
-      await formIns.validateFields(["phone"]); //特莫是数组
-      api.sendPhoneCode(phone).then((data) => {
-        let { code } = data;
-        if (+code !== 0) {
-          Toast.show({
-            icon: "fail",
-            content: "发送失败",
-          });
-          return;
-        }
-        // 发送成功
-        setDisabled(true);
-        countDown();
-        if (!timer) timer = setInterval(countDown, 1000);
-      });
+      // await formIns.validateFields(["phone"]); //特莫是数组
+      // api.sendPhoneCode(phone).then((data) => {
+      //   let { code } = data;
+      //   if (+code !== 0) {
+      //     Toast.show({
+      //       icon: "fail",
+      //       content: "发送失败",
+      //     });
+      //     return;
+      //   }
+      //   // 发送成功
+      //   setDisabled(true);
+      //   countDown();
+      //   if (!timer) timer = setInterval(countDown, 1000);
+      // });
+      await formIns.validateFields(["phone"]);
+      let phone = formIns.getFieldValue("phone");
+      let { code } = await api.sendPhoneCode(phone);
+      if (+code !== 0) {
+        Toast.show({
+          icon: "fail",
+          content: "发送失败",
+        });
+        return;
+      }
+      // 发送成功
+      setDisabled(true);
+      countDown();
+      if (!timer) timer = setInterval(countDown, 1000);
     } catch (_) {}
   };
   // 组件销毁的时候:把没有清除的定时器干掉

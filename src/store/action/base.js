@@ -6,8 +6,8 @@ const baseAction = {
   async queryUserInfoAsync() {
     let info = null;
     try {
-      let { code, data } = await api.queryUserTnfo;
-      if (+code == 0) {
+      let { code, data } = await api.queryUserInfo();
+      if (+code === 0) {
         info = data;
       }
     } catch (_) {}
@@ -17,11 +17,11 @@ const baseAction = {
     };
   },
   //清除存储的登录者的信息
-  clearUserInfo(){
+  clearUserInfo() {
     return {
-        type: TYPES.BASE_INFO,
-        info: null
-    }  
-  }
+      type: TYPES.BASE_INFO,
+      info: null,
+    };
+  },
 };
 export default baseAction;

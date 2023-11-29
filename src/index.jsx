@@ -5,7 +5,7 @@ import App from './App'
 
 //Redux
 import { Provider} from 'react-redux'
-import store from './store/index'
+import store from './store/index.js'
 
 import zhCN from 'antd/locale/zh_CN';
 import {ConfigProvider} from 'antd-mobile'

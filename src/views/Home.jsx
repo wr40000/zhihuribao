@@ -16,21 +16,30 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        api
-          .queryNewsLatest()
-          .then((data) => {
-            // 在这里处理获取到的数据
-            setToday(data.data.date);
-            setBannerData(data.data.top_stories);
-            newsList.push({
-              date: data.data.date,
-              stories: data.data.stories,
-            });
-            setNewsList([...newsList]);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+        // api
+        //   .queryNewsLatest()
+        //   .then((data) => {
+        //     // 在这里处理获取到的数据
+        //     setToday(data.data.date);
+        //     setBannerData(data.data.top_stories);
+        //     newsList.push({
+        //       date: data.data.date,
+        //       stories: data.data.stories,
+        //     });
+        //     setNewsList([...newsList]);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error:", error);
+        //   });
+        let { date, stories, top_stories } = await api.queryNewsLatest();
+        setToday(date);
+        setBannerData(top_stories);
+        // 更新新闻列表状态
+        newsList.push({
+          date,
+          stories,
+        });
+        setNewsList([...newsList]);
       } catch (_) {}
     })();
   }, []);
@@ -41,12 +50,16 @@ export default function Home() {
       if (isIntersecting) {
         // 加载更多按钮出现在视口中，也就是[触底了]
         try {
+          // let time = newsList[newsList.length - 1]["date"];
+          // await api.queryNewsBefore(time).then((data) => {
+          //   let res = data.data;
+          //   newsList.push(res);
+          //   setNewsList([...newsList]);
+          // });
           let time = newsList[newsList.length - 1]["date"];
-          await api.queryNewsBefore(time).then((data)=>{
-            let res = data.data
-            newsList.push(res);
-            setNewsList([...newsList]);
-          });
+          let res = await api.queryNewsBefore(time);
+          newsList.push(res);
+          setNewsList([...newsList]);
         } catch (_) {}
       }
     });

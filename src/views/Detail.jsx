@@ -13,7 +13,7 @@ import api from "../api/index";
 import "./Detail.less";
 
 export default function Detail(props) {
-  let { navigate, parms } = props;
+  let { navigate, params } = props;
   let [info, setInfo] = useState(null);
   let [extra, setExtra] = useState(null);
   let link;
@@ -60,22 +60,38 @@ export default function Detail(props) {
   };
 
   useEffect(() => {
-    api.queryNewsInfo(parms.id).then((data) => {
-      flushSync(() => {
-        setInfo(data.data);
-        handleStyle(data.data);
-      });
-      handleImage(data.data);
-    });
+    // api.queryNewsInfo(params.id).then((data) => {
+    //   flushSync(() => {
+    //     setInfo(data.data);
+    //     handleStyle(data.data);
+    //   });
+    //   handleImage(data.data);
+    // });
+    (async () => {
+      try {
+        let result = await api.queryNewsInfo(params.id);
+        flushSync(() => {
+          setInfo(result);
+          handleStyle(result);
+        });
+        handleImage(result);
+      } catch (_) {}
+    })();
     return () => {
       if (link) document.head.removeChild(link);
     };
   }, []);
 
   useEffect(() => {
-    api.queryStoryExtra(parms.id).then((data) => {
-      setExtra(data.data);
-    });
+    // api.queryStoryExtra(params.id).then((data) => {
+    //   setExtra(data.data);
+    // });
+    (async () => {
+      try {
+        let result = await api.queryStoryExtra(params.id);
+        setExtra(result);
+      } catch (_) {}
+    })();
   }, []);
 
   return (
