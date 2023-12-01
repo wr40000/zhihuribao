@@ -1,30 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {PropTypes} from 'prop-types'
-import "./index.less";
-import { Image } from "antd-mobile";
+import './index.less';
+import { Image } from 'antd-mobile';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function NewsItem(props) {
-  let {news:{hint, id, images, title, url}} = props;
-  if( !Array.isArray(images) ) images = [''];
-  return (
-    <div className="news-item-box">
-      {/* pathname首字注意小写 */}
-      <Link to={{pathname: `/detail/${id}`}}>
-        <div className="content">
-          <h4 className="title">{title}</h4>
-          <p className="author">{hint}</p>
-        </div>
-        <Image src={`${images[0]}`} lazy></Image>
-      </Link>
-    </div>
-  );
-}
+const NewsItem = function NewsItem(props) {
+    let { info } = props;
+    if (!info) return null;
 
+    let { id, title, hint, images, image } = info;
+    if (!images) images = [image];
+    if (!Array.isArray(images)) images = [""];
+    return <div className="news-item-box">
+        <Link to={{ pathname: `/detail/${id}` }}>
+            <div className="content">
+                <h4 className="title">{title}</h4>
+                {hint ? <p className="author">{hint}</p> : null}
+            </div>
+            <Image src={images[0]} lazy />
+        </Link>
+    </div>;
+};
+/* 属性规则处理 */
 NewsItem.defaultProps = {
-  news: null
-}
-// propTypes首字母注意小写
+    info: null
+};
 NewsItem.propTypes = {
-  news: PropTypes.object
-}
+    info: PropTypes.object
+};
+
+export default NewsItem;

@@ -82,10 +82,10 @@ export default function Home() {
         {bannerData.length > 0 ? (
           <Swiper autoplay={true} loop={true}>
             {bannerData.map((item) => {
-              const { title, hint, id, image } = item;
+              let { title, hint, id, image } = item;
               return (
                 <Swiper.Item key={id}>
-                  <Link to={{ pathName: `/detail/${id}` }}>
+                  <Link to={{ pathname: `/detail/${id}` }}>
                     {/* <img src={image} alt="" /> */}
                     {/* 懒加载图片 */}
                     <Image src={image} lazy></Image>
@@ -116,7 +116,7 @@ export default function Home() {
                 </Divider>
               )}
               {stories.map((news, index) => {
-                return <NewsItem key={news.id} news={news}></NewsItem>;
+                return <NewsItem key={news.id} info={news}></NewsItem>;
               })}
             </div>
           );

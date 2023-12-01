@@ -35,7 +35,7 @@ function Login(props) {
   const [sendText, setSendText] = useState("发送验证码");
 
   // 提交表单
-  const submit = async () => {
+  const submit = async () => { 
     try {
       await formIns.validateFields();
       let { phone, code } = formIns.getFieldValue();
@@ -57,7 +57,6 @@ function Login(props) {
         icon: "success",
         content: "登陆成功",
       });
-      navigate(-1);
       let to = usp.get("to");
       to ? navigate(to, { replace: true }) : navigate(-1);
     } catch (_) {}
