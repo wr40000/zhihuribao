@@ -10,14 +10,16 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.11.1",
+    "antd": "5.0.0",
     "antd-icons": "^0.1.0-alpha.1",
-    "antd-mobile": "^5.33.0",
+    "antd-img-crop": "^4.18.0",
+    "antd-mobile": "5.25.1",
     "antd-mobile-icons": "^0.3.0",
     "axios": "^1.6.2",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-named-asset-import": "^0.3.8",
+    "babel-plugin-styled-components-px2rem": "^1.5.5",
     "babel-preset-react-app": "^10.0.1",
     "bfj": "^7.0.2",
     "browserslist": "^4.18.1",
@@ -167,6 +169,14 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "styled-components-px2rem",
+        {
+          "rootValue": 75
+        }
+      ]
     ]
   }
 }
