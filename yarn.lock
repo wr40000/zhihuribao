@@ -6810,6 +6810,11 @@ jsonpointer@^5.0.0:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
+keepalive-react-component@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/keepalive-react-component/-/keepalive-react-component-1.0.1.tgz#237536601a1c87174fe62e0fad68a40cd2b953f1"
+  integrity sha512-l4pHSZTeUaTz6bYfPbQRBVPnMAQrfuob5g2eovsVhiSrIl+uFQRBJS3iUmF1NpwPJkQoS7cxXNHGwLblp2ZqiA==
+
 keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.npmmirror.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
